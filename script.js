@@ -1,12 +1,13 @@
 // Function to parse the encoded string
 const parseCode = (str) => {
-  // Split the input string using "000" as the separator
-  const parts = str.split("000");
+  // Split the input string using regex to handle consecutive zeros
+  const parts = str.split(/0+/);
+
+  // Remove empty strings from the parts array
+  const filteredParts = parts.filter(part => part !== "");
 
   // Extract the values for firstName, lastName, and id
-  const firstName = parts[0];
-  const lastName = parts[1];
-  const id = parts[2];
+  const [firstName, lastName, id] = filteredParts;
 
   // Create and return the result object
   const result = {
